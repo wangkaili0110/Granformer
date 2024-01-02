@@ -1,0 +1,44 @@
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/best/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/best/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.934765, test avg acc: 0.899866
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.934765, test avg acc: 0.899866
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.934360, test avg acc: 0.902826
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.933549, test avg acc: 0.903035
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.934765, test avg acc: 0.904198
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.932739, test avg acc: 0.903070
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.933955, test avg acc: 0.903331
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.935170, test avg acc: 0.907116
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/test/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/best/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.935170, test avg acc: 0.907116
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/best/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.935170, test avg acc: 0.907116
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.930713, test avg acc: 0.900576
+Namespace(batch_size=32, dataset='modelnet40', dropout=0.5, epochs=1000, eval=True, exp_name='test', lr=0.0001, model_path='checkpoints/train/models/model.t7', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=8, use_sgd=True)
+Using GPU : 0 from 2 devices
+Test :: test acc: 0.931929, test avg acc: 0.904407

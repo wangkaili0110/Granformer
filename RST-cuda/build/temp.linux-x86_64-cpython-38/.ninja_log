@@ -1,0 +1,5 @@
+# ninja log v5
+0	331	1682233384617592833	/home/oem/project/RST/RST-cuda/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/RST-cuda/SOFT/kernel/csrc/cuda_version.o	5546a8c456b1a86b
+0	10499	1682233394800419077	/home/oem/project/RST/RST-cuda/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/RST-cuda/SOFT/kernel/csrc/subtraction/GaussianSubtraction_cuda_kernel.o	c861e025925f0fb5
+0	11909	1682233395600327692	/home/oem/project/RST/RST-cuda/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/RST-cuda/SOFT/kernel/csrc/subtraction/GaussianSubtraction_cuda.o	ef539c632f9edb1c
+0	12534	1682233396832187163	/home/oem/project/RST/RST-cuda/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/RST-cuda/SOFT/kernel/csrc/vision.o	1c4d33b9f139b3d5

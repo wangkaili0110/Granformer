@@ -1,0 +1,3 @@
+# ninja log v5
+0	15403	1693381364791081547	/home/oem/project/RST/pytorch/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/model/kernel/matmult_kernel.o	4db37cfce7d21a01
+0	20328	1693381369710474180	/home/oem/project/RST/pytorch/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/pytorch/matmult_ops.o	a6490b72aef2a4bb
