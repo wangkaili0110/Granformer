@@ -1,7 +1,7 @@
 ## PCT: Point Cloud Transformer
-This is a Pytorch implementation of PCT: Point Cloud Transformer.
+This is a Pytorch implementation of Granformer: Point Cloud Granformer.
 
-Paper link: https://arxiv.org/pdf/2012.09688.pdf
+Paper link: https://XXXX.pdf
 
 ### Requirements
 python >= 3.7
@@ -17,10 +17,10 @@ and
 ```shell script
 pip install pointnet2_ops_lib/.
 ```
-The code is from https://github.com/erikwijmans/Pointnet2_PyTorch https://github.com/WangYueFt/dgcnn and https://github.com/MenghaoGuo/PCT
+The code is from https://github.com/wangkaili0110/Granformer
 
 ### Models
-We get an accuracy of 93.2% on the ModelNet40(http://modelnet.cs.princeton.edu/) validation dataset
+We get an accuracy of 93.6% on the ModelNet40(http://modelnet.cs.princeton.edu/) validation dataset
 
 The path of the model is in ./checkpoints/best/models/model.t7
 
@@ -38,10 +38,10 @@ python main.py --exp_name=test --num_points=1024 --use_sgd=True --eval=True --mo
 If it is helpful for your work, please cite this paper:
 ```latex
 @misc{guo2020pct,
-      title={PCT: Point Cloud Transformer}, 
-      author={Meng-Hao Guo and Jun-Xiong Cai and Zheng-Ning Liu and Tai-Jiang Mu and Ralph R. Martin and Shi-Min Hu},
-      year={2020},
-      eprint={2012.09688},
+      title={Granformer: Point Cloud Granformer}, 
+      author={Kai-Li Wang and Xin-Wei Sun and Tao Shen},
+      year={2023},
+      eprint={xxxxxx},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
