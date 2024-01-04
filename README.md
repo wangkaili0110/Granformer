@@ -1,4 +1,4 @@
-## PCT: Point Cloud Transformer
+## Granformer: Point Cloud Granformer
 This is a Pytorch implementation of Granformer: Point Cloud Granformer.
 
 Paper link: https://XXXX.pdf
