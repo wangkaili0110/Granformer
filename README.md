@@ -5,7 +5,7 @@ This project is the PyTorch implementation of "Granformer:a granular transformer
 Granformer is a granular transformer framework with linear complexity by using granular attention and linearization of matrix factorization. 
 It makes the feature representation performance of Transformer more accurate and efficient.
 
-![Granformer](./data/illustration.png)  
+![Granformer](./checkpoints/fig4.png)  
 
 ### Dependencies
 Ubuntu == 20.04  
