@@ -1,4 +1,0 @@
-# ninja log v5
-12	6406	1691394086576857247	/home/oem/project/RST/deformable_model/ops/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/deformable_model/ops/src/cpu/ms_deform_attn_cpu.o	1f316be3f1ed8472
-12	14950	1691394095123904737	/home/oem/project/RST/deformable_model/ops/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/deformable_model/ops/src/cuda/ms_deform_attn_cuda.o	9b9814f22dd65251
-12	15961	1691394096127793865	/home/oem/project/RST/deformable_model/ops/build/temp.linux-x86_64-cpython-38/home/oem/project/RST/deformable_model/ops/src/vision.o	c076468fa26514b9
