@@ -1,48 +1,156 @@
-## Granformer: Point Cloud Granformer
-This is a Pytorch implementation of Granformer: Point Cloud Granformer.
+# Granformer
+This project is the PyTorch implementation of "Granformer:a granular transformer net with linear complexity".[[paper]](https://doi.org/10.1016/j.neucom.2024.128380)
 
-Paper link: https://XXXX.pdf
+## Introduction
+Granformer is a granular transformer framework with linear complexity by using granular attention and linearization of matrix factorization. 
+It makes the feature representation performance of Transformer more accurate and efficient.
 
-### Requirements
-python >= 3.7
+![Granformer](./data/illustration.png)  
 
-pytorch >= 1.6
-
-h5py
-
-scikit-learn
-
-and
+### Dependencies
+Ubuntu == 20.04  
+GPU == NVIDIA A100  
+GPU Driver == 535.104.05  
+CUDA == 12.2  
+Python == 3.8  
+Pytorch == 2.2.0  
+Torchvision == 0.17.0
 
 ```shell script
 pip install pointnet2_ops_lib/.
+pip install -r requirements.txt
 ```
 The code is from https://github.com/wangkaili0110/Granformer
 
-### Models
-We get an accuracy of 93.6% on the ModelNet40(http://modelnet.cs.princeton.edu/) validation dataset
+### Accuracy
+ModelNet40:
+<table>
+  <thead>
+    <tr style="text-align: center;">
+      <th>model</th>
+      <th>input</th>
+      <th>input size</th>
+      <th>OA(%)</th>
+      <th>mA(%)</th>
+    </tr>
+  </thead>
+  <tbody align="center">
+    <tr>
+      <td>Granformer-Gaussian</td>
+      <td>P</td>
+      <td>1024*3</td>
+      <td>93.3</td>
+      <td>90.6</td>
+    </tr>
+    <tr>
+      <td>Granformer-Laplacian</td>
+      <td>P</td>
+      <td>1024*3</td>
+      <td>93.6</td>
+      <td>90.1</td>
+    </tr>
+    <tr>
+      <td>Granformer-Multivariate quadratic</td>
+      <td>P</td>
+      <td>1024*3</td>
+      <td>93.4</td>
+      <td>90.6</td>
+    </tr>
+    <tr>
+      <td>Granformer-Neighborhood</td>
+      <td>P</td>
+      <td>1024*3</td>
+      <td>93.3</td>
+      <td>90.3</td>
+    </tr>
+    <tr>
+      <td>Granformer-Partial</td>
+      <td>P</td>
+      <td>1024*3</td>
+      <td>93.6</td>
+      <td>90.9</td>
+    </tr>
+  </tbody>
+</table>
 
-The path of the model is in ./checkpoints/best/models/model.t7
+CMU-MOSEI:
+<table>
+  <thead>
+    <tr style="text-align: center;">
+      <th>method</th>
+      <th>Sentiment-2(Acc%)</th>
+      <th>Sentiment-7(Acc%)</th>
+      <th>Emotion-6(Acc%)</th>
+    </tr>
+  </thead>
+  <tbody align="center">
+    <tr>
+      <td>Granformer-Gaussian</td>
+      <td>82.47</td>
+      <td>45.37</td>
+      <td>81.57</td>
+    </tr>
+    <tr>
+      <td>Granformer-Laplacian</td>
+      <td>82.45</td>
+      <td>45.38</td>
+      <td>81.52</td>
+    </tr>
+    <tr>
+      <td>Granformer-Multivariate quadratic</td>
+      <td>82.41</td>
+      <td>45.36</td>
+      <td>81.54</td>
+    </tr>
+    <tr>
+      <td>Granformer-Neighborhood</td>
+      <td>82.43</td>
+      <td>45.37</td>
+      <td>81.57</td>
+    </tr>
+    <tr>
+      <td>Granformer-Partial</td>
+      <td>82.46</td>
+      <td>45.39</td>
+      <td>81.57</td>
+    </tr>
+  </tbody>
+</table>
 
-### Example training and testing
-```shell script
-# train
-python main.py --exp_name=train --num_points=1024 --use_sgd=True --batch_size 32 --epochs 250 --lr 0.0001
-
-# test
-python main.py --exp_name=test --num_points=1024 --use_sgd=True --eval=True --model_path=checkpoints/best/models/model.t7 --test_batch_size 8
-
-```
+COCO:
+<table>
+  <thead>
+    <tr style="text-align: center;">
+      <th>model</th>
+      <th>Ap</th>
+      <th>Ap50</th>
+      <th>Ap75</th>
+      <th>Aps</th>
+      <th>Apm</th>
+      <th>Apl</th>
+    </tr>
+  </thead>
+  <tbody align="center">
+    <tr>
+      <td>Granformer-Laplacian</td>
+      <td>38.3</td>
+      <td>57.9</td>
+      <td>40.8</td>
+      <td>21.1</td>
+      <td>42.2</td>
+      <td>52.7</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Citation
-If it is helpful for your work, please cite this paper:
-```latex
-@misc{guo2020pct,
-      title={Granformer: Point Cloud Granformer}, 
-      author={Kai-Li Wang and Xin-Wei Sun and Tao Shen},
-      year={2023},
-      eprint={xxxxxx},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+If you find Granformer useful in your research, please consider citing:
+```bibtex
+@article{wang2024granformer,
+      title={Granformer:a granular transformer net with linear complexity}, 
+      author={Kaili Wang and Xinwei Sun and Tao Shen},
+      journal={Neurocomputing},
+      url={https://doi.org/10.1016/j.neucom.2024.128380},
+      year={2024}
 }
 ```
