@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.optim.lr_scheduler import CosineAnnealingLR
 from data import ModelNet40
-from RSTmodel import RST
+from Granmodel import GRAN
 import numpy as np
 from torch.utils.data import DataLoader
 from util import cal_loss, IOStream
@@ -24,7 +24,7 @@ def _init_():
     if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
         os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
     os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
-    os.system('cp RSTmodel.py checkpoints' + '/' + args.exp_name + '/' + 'RSTmodel.py.backup')
+    os.system('cp Granmodel.py checkpoints' + '/' + args.exp_name + '/' + 'Granmodel.py.backup')
     os.system('cp util.py checkpoints' + '/' + args.exp_name + '/' + 'util.py.backup')
     os.system('cp data.py checkpoints' + '/' + args.exp_name + '/' + 'data.py.backup')
 
@@ -36,8 +36,7 @@ def train(args, io):
 
     device = torch.device("cuda" if args.cuda else "cpu")
 
-    model = RST(args).to(device)
-    # print(str(model))
+    model = GRAN(args).to(device)
     model = nn.DataParallel(model)
 
     if args.use_sgd:
@@ -47,26 +46,25 @@ def train(args, io):
         print("Use Adam")
         opt = optim.Adam(model.parameters(), lr=args.lr, weight_decay=1e-4)
 
+    missing_keys, unexpected_keys = model.load_state_dict(torch.load(args.model_path), strict=False)
+    unexpected_keys = [k for k in unexpected_keys if not (k.endswith('total_params') or k.endswith('total_ops'))]
+
     scheduler = CosineAnnealingLR(opt, args.epochs, eta_min=args.lr)
-    # scheduler.step_size = args.lr_drop
     output_dir = Path(args.output_dir)
     if args.resume:
-        #checkpoint = torch.load(args.checkpoint_path, map_location='cuda')
-        statedict = torch.load(args.resume, map_location='cuda')
-        model.load_state_dict(statedict, strict=False)
-        args.start_epoch = 607 + 1
-        #missing_keys, unexpected_keys = model.load_state_dict(checkpoint['model'], strict=False)
-        #unexpected_keys = [k for k in unexpected_keys if not (k.endswith('total_params') or k.endswith('total_ops'))]
-        #if len(missing_keys) > 0:
-        #    print('Missing Keys: {}'.format(missing_keys))
-        #if len(unexpected_keys) > 0:
-        #    print('Unexpected Keys: {}'.format(unexpected_keys))
-        #if 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
-        #    opt.load_state_dict(checkpoint['optimizer'])
-        #    scheduler.load_state_dict(checkpoint['lr_scheduler'])
-        #    scheduler.step_size = args.lr_drop
-        ##    scheduler.step(scheduler.last_epoch)
-        #    args.start_epoch = checkpoint['epoch'] + 1
+        checkpoint = torch.load(args.checkpoint_path, map_location='cuda')
+        missing_keys, unexpected_keys = model.load_state_dict(checkpoint['model'], strict=False)
+        unexpected_keys = [k for k in unexpected_keys if not (k.endswith('total_params') or k.endswith('total_ops'))]
+        if len(missing_keys) > 0:
+            print('Missing Keys: {}'.format(missing_keys))
+        if len(unexpected_keys) > 0:
+            print('Unexpected Keys: {}'.format(unexpected_keys))
+        if 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
+            opt.load_state_dict(checkpoint['optimizer'])
+            # scheduler.load_state_dict(checkpoint['lr_scheduler'])
+            # scheduler.step_size = args.lr_drop
+            scheduler.step(scheduler.last_epoch)
+            # args.start_epoch = checkpoint['epoch'] + 1
 
     criterion = cal_loss
     best_test_acc = 0
@@ -171,7 +169,7 @@ def test(args, io):
 
     device = torch.device("cuda" if args.cuda else "cpu")
 
-    model = RST(args).to(device)
+    model = GRAN(args).to(device)
     model = nn.DataParallel(model) 
     
     model.load_state_dict(torch.load(args.model_path))
@@ -199,16 +197,15 @@ def test(args, io):
     io.cprint(outstr)
 
 if __name__ == "__main__":
-
     # Training settings
     parser = argparse.ArgumentParser(description='Point Cloud Recognition')
     parser.add_argument('--exp_name', type=str, default='train', metavar='N',
                         help='Name of the experiment')
     parser.add_argument('--dataset', type=str, default='modelnet40', metavar='N',
                         choices=['modelnet40'])
-    parser.add_argument('--batch_size', type=int, default=128, metavar='batch_size',
+    parser.add_argument('--batch_size', type=int, default=32, metavar='batch_size',
                         help='Size of batch)')
-    parser.add_argument('--test_batch_size', type=int, default=128, metavar='batch_size',
+    parser.add_argument('--test_batch_size', type=int, default=32, metavar='batch_size',
                         help='Size of batch)')
     parser.add_argument('--epochs', type=int, default=1000, metavar='N',
                         help='number of episode to train ')
@@ -227,23 +224,23 @@ if __name__ == "__main__":
                         help='evaluate the model')
     parser.add_argument('--num_points', type=int, default=1024,
                         help='num of points to use')
-    parser.add_argument('--dropout', type=float, default=0.3,
+    parser.add_argument('--dropout', type=float, default=0.5,
                         help='dropout rate')
-    parser.add_argument('--model_path', type=str, default='', metavar='N',
+    parser.add_argument('--model_path', type=str, default='/home/project/Granformer/checkpoints/path/model.t7', metavar='N',
                         help='Pretrained model path')
     parser.add_argument('--resume', default='',
                         help='resume from checkpoint')
-    # /home/kmyh/project/RST/checkpoints/train/models/model.t7
+    # /home/kmyh/project/GRAN/checkpoints/train/models/model.t7
     # * kernelAttn
     parser.add_argument('--ratio', default=8, type=int,
                         help="the ratio of the kernel attention conv")
     parser.add_argument('--use_conv', default=9, type=int,
                         help="kernel size of the kernel attention conv")
-    parser.add_argument('--max_iter', default=6, type=int,
+    parser.add_argument('--max_iter', default=12, type=int,
                         help="Number of the newton inverse")  # 6
-    parser.add_argument('--output_dir', default='/home/kmyh/project/RST/checkpoints/path',
+    parser.add_argument('--output_dir', default='/home/project/Granformer/checkpoints/path',
                         help='path where to save, empty for no saving')
-    parser.add_argument('--checkpoint_path', default='/home/kmyh/project/RST/checkpoints/path/checkpoint.pth',
+    parser.add_argument('--checkpoint_path', default='/home/project/Granformer/checkpoints/path/checkpoint.pth',
                         help='resume from checkpoint')
     parser.add_argument('--start_epoch', default=0, type=int, metavar='N', help='start epoch')
     args = parser.parse_args()
